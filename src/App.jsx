@@ -3,6 +3,8 @@ import { createRoot } from 'react-dom/client'
 
 import Hello from './Hello';
 import Timer from './Timer';
+import TimeList from './TimeList';
+import { TestContext } from './testContext';
 
 
 // class App extends React.Component{
@@ -32,8 +34,9 @@ import Timer from './Timer';
 
 
 const App =()=>{
-  const [title,setTitle] = useState("Simple Timer")
+  const [title,setTitle] = useState("Cronometro");
   const [isLight,setIsLight] = useState(false);
+  const [timeArr,setTimeArr]=useState([]);
 
 
   useEffect(()=>{
@@ -44,10 +47,21 @@ const App =()=>{
     setIsLight(!isLight);
   }
   return(
-    <div className='main' style={{background: isLight ? "white" : "black"}}>
+    <TestContext.Provider value={{
+      timeArr,
+      setTimeArr
+    }}>
+    <div className='main' style={{background: isLight ? "rgb(158, 158, 158)" : "black"}}>
         <Hello title ={title}/>
-        <Timer isLight={isLight} handleSetLight ={handleSetLight}/>
+        <Timer 
+        isLight={isLight} 
+        handleSetLight ={handleSetLight} 
+        timeArr ={timeArr} 
+        setTimeArr={setTimeArr}
+        />
+         <TimeList/>
     </div>
+    </TestContext.Provider>
   )
 }
 

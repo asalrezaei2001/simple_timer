@@ -1,5 +1,7 @@
 import React, { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import TimeList from './TimeList';
+import { TestContext } from './testContext';
 
 
 
@@ -16,6 +18,8 @@ class Timer extends React.Component{
     }
   }
 
+
+  static contextType = TestContext;
 
   startInterval = () => {
     if(this.state.isStart == false){
@@ -61,6 +65,12 @@ class Timer extends React.Component{
   }
 
 
+  handleSaveTime =()=>{
+    let newTime = document.querySelector('.timer').innerHTML;
+    this.context.setTimeArr([...this.context.timeArr , newTime]);
+  }
+
+
   render(){
     let h = this.state.hour;
     let m = this.state.minute;
@@ -68,7 +78,7 @@ class Timer extends React.Component{
     
     return(
       <>
-   <h2 className='timer'>
+   <h2 className='timer' onClick={this.handleSaveTime}>
       {`${h > 9 ? h : "0"+h} : ${m >9 ? m : "0"+m} : ${s > 9 ? s : "0" + s}`}
    </h2>
       <div className="button_box">
@@ -79,8 +89,8 @@ class Timer extends React.Component{
         onClick={this.props.handleSetLight}
         style={ 
           {
-           background : this.props.isLight ? "black" : "white" ,
-           color : this.props.isLight ? "white" : "black"
+           background : this.props.isLight ? "black" : "rgb(158, 158, 158)" ,
+           color : this.props.isLight ? "rgb(158, 158, 158)" : "black"
         }
         }
         >

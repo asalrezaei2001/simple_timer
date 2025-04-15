@@ -12,7 +12,7 @@ body{
     align-items: center;
     flex-direction: column;
     background: black;
-    color: chocolate;
+    color: rgb(38, 50, 56);
 }
 
 .timer{
@@ -24,7 +24,7 @@ body{
     justify-content: center;
     display: flex;
     background: black;
-    color: chocolate;
+    color: rgb(38, 50, 56);
     transition: all 200ms ease;
     cursor: pointer;
 }
@@ -64,9 +64,14 @@ body{
 }
 
 .reset_button{
-    background-color: gray;
+    background-color: #212121;
 }
 
-.change_bg_button{
-    background-color: #50bd11;
+.time_item{
+    margin-top: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.time_item:hover{
+   text-shadow: 0 0 20px rgb(146, 240, 216);
 }
